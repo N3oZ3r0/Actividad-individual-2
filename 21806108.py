@@ -1,36 +1,101 @@
+import numpy as np
 import six
+
 six.MAXSIZE
 9223372036854775807
 
 n = 21806108
-log = True
+log = False
 
 
-# Funcion que tiene tres bucles diferentes
+# Funcion que tiene el Ejercicio A
 def ejercicio_a():
     global n
-    k = [n]
-    j = [n]
-    i = 0
-    for i in range(n-1):
-        k.append(i+1)
-        j.append(i+1)
+    k = []
+    j = []
+    for i in range(n):
+        k.append(i + 1)
+        j.append(i + 1)
+
     k.extend(j)
-    print("La mediana del array es : ", k.index(n/2))
+    k.sort()
+    x = int(len(k) / 2)
+    print("La mediana es : ", k[x])
 
-# Funcion que determina si el numero es primo
+
+# Funcion que tiene el Ejercicio B
 def ejercicio_b():
-    n = 0
+    global n
+    x = []
+    y = []
+    for i in range(n):
+        x.append(i + 1)
+        y.append(i + 1)
+    if np.array_equal(x, y):
+        print("Los array son iguales")
+    else:
+        print("Los array no son iguales")
 
 
-# Funcion que calcula el producto de dos matrices
+# Funcion que tiene el Ejercicio C
 def ejercicio_c():
-    n = 0
+    q = 50
+    M = []
+    for i in range(q):
+        fila = []
+        for j in range(q):
+            fila.append((j+1)*(i+1))
+        M.append(fila)
 
+    np.transpose(M)
 
-# Funcion recursiva que indica si el numero es capicua
+    for i in range(q):
+        print(M[i])
+
+# Funcion que tiene el Ejercicio D
 def ejercicio_d():
-    n = 0
+    global n
+    ant = None
+    act = None
+    pico = 0
+    picoant = 0
+    valle = 0
+    valleant = 0
+    X = np.random.randint(1, 21806108, n)
+
+    for i in X:
+        if act == None:
+            act = i
+        else:
+            if i != act:
+                if ant != None:
+                    if (ant < act and i < act):
+                        pico = i
+                        distancia = abs(pico - valle)
+                        distanciaant = abs(picoant - valleant)
+                        if (distancia > distanciaant):
+                            picoant = pico
+
+                    elif (ant > act and i > act):
+                        valle = i
+                        distancia= abs(pico - valle)
+                        distanciaant = abs(picoant - valleant)
+                        if (distancia > distanciaant):
+                            valleant = valle
+
+                else:
+                    ant = act
+                    valle = i
+                    distancia = abs(pico - valle)
+                    distanciaant = abs(picoant - valleant)
+                    if (distancia > distanciaant):
+                        valleant = valle
+                ant = act
+                act = i
+
+    distancia = abs(picoant - valleant)
+
+    print("La distancia es ", distancia)
 
 
 # Funcion principal
