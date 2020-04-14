@@ -39,17 +39,17 @@ def ejercicio_b():
 
 # Funcion que tiene el Ejercicio C
 def ejercicio_c():
-    q = 50
+    global n
     M = []
-    for i in range(q):
+    for i in range(n):
         fila = []
-        for j in range(q):
+        for j in range(n):
             fila.append((j+1)*(i+1))
         M.append(fila)
 
     np.transpose(M)
 
-    for i in range(q):
+    for i in range(n):
         print(M[i])
 
 # Funcion que tiene el Ejercicio D
